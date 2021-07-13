@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
             if (PlayerPrefs.GetInt("Highscore") < Score.score)
             {
                 PlayerPrefs.SetInt("Highscore", Score.score);
+                PlayGames.AddScoreToLeaderboard();
                 NewHighscore.SetActive(true);
             }
         }
@@ -106,8 +107,14 @@ public class GameManager : MonoBehaviour
         //displays bananas earned and how much the player had before that
         Bananas.text = "Bananas: " + PlayerPrefs.GetInt("Bananas") + " + " + earnedBananas;
         ScoreText.text = "Score: " + Score.score;
-        HighScore.text = "Highscore: " + PlayerPrefs.GetInt("Highscore");
-
+        if (MainMenu.hard == true)
+        {
+            HighScore.text = "Highscore: " + PlayerPrefs.GetInt("HighscoreHard");
+        }
+        else
+        {
+            HighScore.text = "Highscore: " + PlayerPrefs.GetInt("Highscore");
+        }
 
         //then adds the earned bananas to the total amount
         bananas = bananas + earnedBananas;

@@ -8819,6 +8819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverCanvas: {fileID: 1783718917}
   scoreCanvas: {fileID: 1885113494}
+  NewHighscore: {fileID: 324730820}
   Back: {fileID: 1500109384}
   HBack: {fileID: 648977765}
   TotalScore: 0
