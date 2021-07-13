@@ -9,6 +9,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverCanvas;
+    public GameObject scoreCanvas;
+    public GameObject NewHighscore;
+
+
+
 
     public GameObject Back;
     public GameObject HBack;
@@ -17,7 +22,9 @@ public class GameManager : MonoBehaviour
     public int bananas;
     public int earnedBananas;
 
-    public Text bananarama;
+    public Text Bananas;
+    public Text HighScore;
+    public Text ScoreText;
 
     public static int skin;
     public GameObject Skin1;
@@ -45,6 +52,8 @@ public class GameManager : MonoBehaviour
         SoundManagerScript.PlaySound("Start");
 
         gameOverCanvas.SetActive(false);
+        scoreCanvas.SetActive(true);
+        NewHighscore.SetActive(false);
 
         Time.timeScale = 1;
 
@@ -65,12 +74,13 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Total Score", (TotalScore + Score.score));
 
-        //pauses game
+        // checks if you earned a new highscore
         if (MainMenu.hard == true)
         {
             if (PlayerPrefs.GetInt("HighscoreHard") < Score.score)
             {
                 PlayerPrefs.SetInt("HighscoreHard", Score.score);
+                NewHighscore.SetActive(true);
             }
         }
         else
@@ -78,8 +88,10 @@ public class GameManager : MonoBehaviour
             if (PlayerPrefs.GetInt("Highscore") < Score.score)
             {
                 PlayerPrefs.SetInt("Highscore", Score.score);
+                NewHighscore.SetActive(true);
             }
         }
+        //adds bananas to account
         earnedBananas = Score.score;
         if (MainMenu.hard == true)
         {
@@ -92,7 +104,10 @@ public class GameManager : MonoBehaviour
         //}
 
         //displays bananas earned and how much the player had before that
-        bananarama.text = "Bananas: " + PlayerPrefs.GetInt("Bananas") + " + " + earnedBananas;
+        Bananas.text = "Bananas: " + PlayerPrefs.GetInt("Bananas") + " + " + earnedBananas;
+        ScoreText.text = "Score: " + Score.score;
+        HighScore.text = "Highscore: " + PlayerPrefs.GetInt("Highscore");
+
 
         //then adds the earned bananas to the total amount
         bananas = bananas + earnedBananas;
@@ -101,7 +116,9 @@ public class GameManager : MonoBehaviour
         SoundManagerScript.PlaySound("UH oh");
 
         gameOverCanvas.SetActive(true);
-  
+        scoreCanvas.SetActive(false);
+
+        //pauses game
         Time.timeScale = 0;
     }
     
@@ -110,6 +127,8 @@ public class GameManager : MonoBehaviour
     {
         //restarts game      
         gameOverCanvas.SetActive(false);
+        scoreCanvas.SetActive(true);
+        NewHighscore.SetActive(false);
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }

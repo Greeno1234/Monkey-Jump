@@ -2415,6 +2415,7 @@ MonoBehaviour:
   skinItemContainer: {fileID: 2031362575}
   Availability: 0
   Currency: 500
+  selected: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &809698337
 GameObject:
   m_ObjectHideFlags: 0

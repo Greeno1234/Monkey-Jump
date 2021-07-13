@@ -8,7 +8,7 @@ public class Movinghair : MonoBehaviour
     private float speed = 2.5f;
     private float HardSpeed = 5f;
     public double incriment;
-    public GameObject background;
+    
 
     // Start is called before the first frame update
     void Start()

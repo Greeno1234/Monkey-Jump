@@ -17,6 +17,9 @@ public class MainMenu : MonoBehaviour
     public int Currency;
     public static bool hard;
 
+
+    public Color selected;
+
     private int[] costs = { 0, 100, 150, 200, 269, 350, 420, 500, 666, 800, 1111, 2500 };
 
 
@@ -51,7 +54,7 @@ public class MainMenu : MonoBehaviour
             int monkeyIndex = textureIndex;
             container.GetComponent<Button> ().onClick.AddListener (() => SkinChange(monkeyIndex));
             container.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = costs[monkeyIndex].ToString();
-
+            
             if ((Availability & 1 << monkeyIndex) == 1 << monkeyIndex)
             {
                 container.transform.GetChild (0).gameObject.SetActive(false);
@@ -65,11 +68,15 @@ public class MainMenu : MonoBehaviour
     {
 
         if ((Availability & 1 << monkeyIndex) == 1 << monkeyIndex)
-        {
-            //Debug.Log(1 << monkeyIndex);
-            
+        {        
             PlayerPrefs.SetInt("Skin", monkeyIndex);
             skin.text = "Selected Skin: " + (PlayerPrefs.GetInt("Skin") + 1);
+          
+           // if ((monkeyIndex) == PlayerPrefs.GetInt("Skin"))
+           // {
+           //     Debug.Log("it works");
+           // }
+
         }
         else
         {
