@@ -16,7 +16,7 @@ public class PlayGames : MonoBehaviour
 
     void Start()
     {
-        highScore = PlayerPrefs.GetInt("Highscore");
+        
         if (platform == null)
         {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
@@ -37,11 +37,11 @@ public class PlayGames : MonoBehaviour
             }
         });
         AddScoreToLeaderboard();
-        //UnlockAchievement();
     }
 
     public static void AddScoreToLeaderboard()
     {
+        highScore = PlayerPrefs.GetInt("Highscore");
         if (Social.Active.localUser.authenticated)
         {
             Social.ReportScore(highScore, leaderboardID, success => { });
